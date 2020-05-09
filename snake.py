@@ -40,5 +40,14 @@ while game:
     if x1 <= 0 or x1 >= 490 or y1 <= 0 or y1 >= 390:
         game = False
         
+
+
+
+
+
+
+
+
+        
 pygame.quit()
 quit()
