@@ -9,15 +9,18 @@ pygame.display.update()
 pygame.display.set_caption('Snake game')
 red = (255, 0, 0)
 blue = (0,0,255)
-lblue = (50, 153, 213)
+lblue = (120, 110, 200)
+green = (0,255,255)
 x1 = 300
 y1 = 300
 x1_change = 0
 y1_change = 0
 snake_List = []
 Length_of_snake = 1
-foodx = round(random.randrange(0, 500 - 13)/10.0)*10.0
-foody = round(random.randrange(0, 500 - 13)/10.0)*10.0
+foodx = round(random.randrange(0, 490 - 13)/10.0)*10.0
+foody = round(random.randrange(0, 392 - 13)/10.0)*10.0
+kilx = round(random.randrange(0, 490 - 13)/10.0)*10.0
+kily = round(random.randrange(0, 392 - 13)/10.0)*10.0
 def our_snake(snake_list):
     for x in snake_list:
         pygame.draw.rect(display, blue, [x[0], x[1], 13, 13])
@@ -41,7 +44,8 @@ while game:
     x1 += x1_change
     y1 += y1_change    
     display.fill(lblue)
-    pygame.draw.rect(display,[0,255,60],[foodx,foody,10,10])
+    pygame.draw.rect(display,green,[foodx,foody,10,10])
+    pygame.draw.rect(display,red,[kilx,kily,10,10])
     snake_head = []
     snake_head.append(x1)
     snake_head.append(y1)
@@ -50,9 +54,16 @@ while game:
             del snake_List[0]
     our_snake(snake_List)
     pygame.display.update()    
+    for x in snake_List[:-2]:
+            if x == snake_head:
+                game = False
+    if x1 == kilx and y1 == kily:
+        game = False
     if x1 == foodx and y1 == foody:
-            foodx = round(random.randrange(0, 500 - 13)/10.0)*10.0
-            foody = round(random.randrange(0, 400 - 13)/10.0)*10.0
+            kilx = round(random.randrange(0, 490 - 13)/10.0)*10.0
+            kily = round(random.randrange(0, 392 - 13)/10.0)*10.0
+            foodx = round(random.randrange(0, 490 - 13)/10.0)*10.0
+            foody = round(random.randrange(0, 392 - 13)/10.0)*10.0
             Length_of_snake += 1
     clock.tick(10)
     if x1 <= 0 or x1 >= 490 or y1 <= 0 or y1 >= 390:
