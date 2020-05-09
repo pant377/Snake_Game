@@ -31,15 +31,14 @@ while game:
             elif event.key == pygame.K_DOWN:
                 x1_change = 0
                 y1_change = 10    
-    if x1 < 0 or x1 >= 301 or y1 < 0 or y1 >= 301:
-        game = False
     x1 += x1_change
     y1 += y1_change    
     display.fill(black)
     pygame.draw.rect(display,[0,0,255],[x1,y1,13,13])
     pygame.display.update()    
     clock.tick(10)
-    
+    if x1 <= 0 or x1 >= 490 or y1 <= 0 or y1 >= 390:
+        game = False
         
 pygame.quit()
 quit()
